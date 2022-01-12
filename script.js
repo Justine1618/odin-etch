@@ -12,7 +12,10 @@ const divContainer = document.querySelector('#divContainer');
 function createDivCells(numDivs) {
     let divCells = []
     for(let i = 0; i < numDivs * numDivs; i++) {
-        dicCells.push(document.createElement('div'));
+        let temp = document.createElement('div');
+        temp.setAttribute('style', 'background-color: white');
+        temp.addEventListener('mouseenter', e => {temp.setAttribute('style', 'background-color: black');});
+        divCells.push(temp);
     }
     return divCells;
 }
@@ -25,16 +28,13 @@ function clearDivContainer() {
     }
 }
 
-function formatDivs(numDivs) {
-    for(const cell in divCells) {
-        //Will need to set more attributes later and attach eventListeners here too
-        cell.setAttribute('style', `width: ${WIDTH/numDivs}; height: ${HEIGHT/numDivs}`);
-    }
-}
-
 //Need to learn more about grid and setup divContainer grid here
 function formatDivContainer(numDivs) {
-    //divContainer.setAttribute()
+    divContainer.setAttribute('style',
+             `display: grid; 
+              grid-template-columns: repeat(${numDivs}, ${WIDTH/numDivs}px);
+              grid-template-rows: repeat(${numDivs}, ${HEIGHT/numDivs}px);
+              `)
 }
 
 function attachDivChildren(divCells) {
@@ -45,6 +45,19 @@ function attachDivChildren(divCells) {
 
 function reset() {
     //Need to put what will happen when you push the reset button
+    let newNumDivs = prompt('Please enter the number of cells per side', '50');
+    clearDivContainer();
+    formatDivContainer(newNumDivs);
+    attachDivChildren(createDivCells(newNumDivs));
+
+}
+
+function initialize(numDivs) {
+    //Need to setup the page using default values numDivs = 50
+    formatDivContainer(numDivs);
+    attachDivChildren(createDivCells(numDivs));
 }
 
 resetBtn.addEventListener('click', reset);
+initialize(50);
+
