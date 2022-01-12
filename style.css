@@ -1,0 +1,22 @@
+#body {
+    width: 70vw;
+    height: auto;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#divContainer {
+    width: 500px;
+    height: 500px;
+    margin: 16px;
+}
+
+#buttonContainer {
+    width: 70vw;
+    height: auto;
+    margin: 16px auto;
+    display: flex;
+    justify-content: center;
+}
